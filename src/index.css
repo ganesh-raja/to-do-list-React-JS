@@ -1,0 +1,9 @@
+@media (min-width: 576px) {
+    .container, .container-sm {
+        max-width: 60% !important;
+    }
+}
+
+.badge {
+    width: 40px !important;
+}
