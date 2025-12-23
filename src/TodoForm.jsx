@@ -27,7 +27,10 @@ const TodoForm = ({task, setTask}) => {
             return
         }
 
-        const tmethod = taskId.value === "" ? "ADD" : "EDIT"        
+        const tmethod = taskId.value === "" ? "ADD" : "EDIT" 
+        
+        const cDate = new Date(taskDate.value)
+        const indDate = cDate.toLocaleDateString("en-CA")
 
         if (tmethod === "ADD") {
 
@@ -37,7 +40,7 @@ const TodoForm = ({task, setTask}) => {
                 Id: idVal,
                 Name: taskName.value,
                 Priority: taskPrior.value,
-                Date: taskDate.value,
+                Date: indDate,
                 Active: false
             }
             
@@ -56,7 +59,7 @@ const TodoForm = ({task, setTask}) => {
                     ...t,
                     Name: taskName.value,
                     Priority: taskPrior.value,
-                    Date: taskDate.value
+                    Date: indDate
                  } 
                 : t
             )
@@ -111,7 +114,7 @@ const TodoForm = ({task, setTask}) => {
             </div>
             <div className="col-12">
                 <div className="form-group d-flex justify-content-center mt-3">
-                <button type="submit" className='btn btn-primary me-3'>Save</button>
+                <button type="submit" className='btn btn-success me-3'>Save</button>
                 <button type="button" className='btn btn-secondary' onClick={() => formreset()}>Reset</button>
                 </div>
             </div>
