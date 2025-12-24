@@ -1,9 +1,25 @@
+body {
+    background-color: rgb(237 246 255) !important;
+}
+
+.main {
+    box-shadow: 0 3px 5px #7a7a7a;
+}
+
 @media (min-width: 576px) {
     .container, .container-sm {
-        max-width: 60% !important;
+        max-width: 60% !important;        
     }
 }
 
 .badge {
     width: 40px !important;
+}
+
+button {
+    transition: all 0.3s ease !important;
+}
+
+button:hover {
+    transform: translateY(-3px);
 }

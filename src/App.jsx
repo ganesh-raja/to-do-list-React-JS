@@ -4,7 +4,7 @@ import TaskList from './TaskList'
 
 function App() {  
 
-  const [task, setTask] = useState([])  
+  const [task, setTask] = useState([])
 
   useEffect(() => {
     const stored = localStorage.getItem("allTask");
@@ -12,20 +12,14 @@ function App() {
 
     const allTasks = JSON.parse(stored);
 
+    // today
     const today = new Date();
+    const todayfinal = today.toLocaleDateString("en-CA")
 
     // yesterday
     const prev = new Date(today);
     prev.setDate(prev.getDate() - 1);
-    const pdayfinal = prev.toLocaleDateString("en-CA")
-
-    // today
-    const todayfinal = today.toLocaleDateString("en-CA")
-
-    // tomorrow
-    const next = new Date(today);
-    next.setDate(next.getDate() + 1);
-    const ndayfinal = next.toLocaleDateString("en-CA")
+    const pdayfinal = prev.toLocaleDateString("en-CA")        
 
     const reAsignTask = allTasks.map(all =>
       all.Active === false && all.Date < todayfinal
@@ -44,20 +38,16 @@ function App() {
   }, []);
 
 
-  const [dayTask, setDayTask] = useState(new Date());
-
-  const [tTask, setTTask] = useState([])  
-
-  const [activeBtn, setActiveBtn] = useState("today");
+  const [dayTask, setDayTask] = useState(new Date())
+  const [tTask, setTTask] = useState([])
+  const [activeBtn, setActiveBtn] = useState("today")  
 
   useEffect(() => {
     const selectDate = dayTask.toLocaleDateString("en-CA")
     const filtertask = task.filter(item => item.Date === selectDate)
 
-    setTTask(filtertask)
-    
-  }, [task, dayTask]) 
-  
+    setTTask(filtertask)       
+  }, [task, dayTask])   
 
   const editTask = (eid) => {
 
@@ -119,7 +109,7 @@ function App() {
   }
 
   return (
-    <div className="container-sm">
+    <div className="main container-sm border border-1 rounded p-3 my-0 my-sm-5 bg-light">
       <TodoForm
         task={task} 
         setTask={setTask}
@@ -139,21 +129,21 @@ function App() {
       <div className="row mt-3">
         <div className="col">
           <ul className='list-group'>
-          {tTask.length > 0 && 
-            tTask.map(item => 
-            <TaskList 
-              key={item.Id}
-              item={item} 
-              editTask={editTask}
-              delTask={delTask}
-              formStatus={formStatus}
-            />            
-          )}
-          {tTask.length === 0 &&
-            <li className='list-group-item list-group-item-action'>              
-              <p className='text-danger text-center mt-3'>No record found.</p>               
+          {tTask.length > 0 ? (
+            tTask.map(item => (
+              <TaskList
+                key={item.Id}
+                item={item}
+                editTask={editTask}
+                delTask={delTask}
+                formStatus={formStatus}
+              />
+            ))
+          ) : (
+            <li className="list-group-item text-danger text-center">
+              No record found.
             </li>
-          }
+          )}         
           </ul>
         </div>
       </div>

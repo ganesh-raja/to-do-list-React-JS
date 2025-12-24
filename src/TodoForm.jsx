@@ -82,10 +82,15 @@ const TodoForm = ({task, setTask}) => {
 
   return (
     <>
-        <div className="row mt-3">
+        <div className="row">
             <div className="col-12">
-            <h1 className='text-center'>To-Do-List</h1>
+            <h1 className='text-center mb-3'>                
+                <span className='bg-primary-subtle border border-primary-subtle text-primary-emphasis rounded px-1'>To</span>-
+                <span className='bg-success-subtle border border-success-subtle text-success-emphasis rounded px-1'>Do</span>-
+                <span className='bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded px-1'>List</span>                
+            </h1>
             </div>
+            <hr />
         </div>
         <form action="" id="taskform" onSubmit={taskSumbit}>
         <div className="row mt-3">
@@ -112,7 +117,7 @@ const TodoForm = ({task, setTask}) => {
                 <input type="date" id='sdate' className='form-control'/>
                 </div>
             </div>
-            <div className="col-12">
+            <div className="col-12 mt-2">
                 <div className="form-group d-flex justify-content-center mt-3">
                 <button type="submit" className='btn btn-success me-3'>Save</button>
                 <button type="button" className='btn btn-secondary' onClick={() => formreset()}>Reset</button>
